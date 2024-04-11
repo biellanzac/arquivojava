@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Scanner;
 
 public class Personagem {
     private String id;
@@ -94,7 +95,7 @@ public class Personagem {
     // Método para imprimir os dados do personagem (opcional)
     @Override
     public String toString() {
-        return id + " ## " +
+        return "[" + id + " ## " +
                 name + " ## " +
                 "{" + String.join(", ", alternateNames) + "} ## " +
                 house + " ## " +
@@ -108,14 +109,150 @@ public class Personagem {
                 eyeColour + " ## " +
                 gender + " ## " +
                 hairColour + " ## " +
-                wizard + " ## ";
+                wizard + "]";
     }
-    
 
     public static void main(String[] args) {
         List<Personagem> personagens = carregarDadosDoCSV("characters.csv");
-        for (Personagem personagem : personagens) {
-            System.out.println(personagem);
-        }
+        Scanner scanner = new Scanner(System.in);
+
+        String idDesejado;
+        do {
+            idDesejado = scanner.nextLine();
+
+            if (!idDesejado.equals("FIM")) {
+                boolean encontrado = false;
+                for (Personagem personagem : personagens) {
+                    if (personagem.getId().equals(idDesejado)) {
+                        System.out.println(personagem);
+                        encontrado = true;
+                        break;
+                    }
+                }
+                if (!encontrado) {
+                    System.out.println("Personagem não encontrado.");
+                }
+            }
+        } while (!idDesejado.equals("FIM"));
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<String> getAlternateNames() {
+        return alternateNames;
+    }
+
+    public void setAlternateNames(List<String> alternateNames) {
+        this.alternateNames = alternateNames;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public String getAncestry() {
+        return ancestry;
+    }
+
+    public void setAncestry(String ancestry) {
+        this.ancestry = ancestry;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public String getPatronus() {
+        return patronus;
+    }
+
+    public void setPatronus(String patronus) {
+        this.patronus = patronus;
+    }
+
+    public boolean isHogwartsStaff() {
+        return hogwartsStaff;
+    }
+
+    public void setHogwartsStaff(boolean hogwartsStaff) {
+        this.hogwartsStaff = hogwartsStaff;
+    }
+
+    public boolean isHogwartsStudent() {
+        return hogwartsStudent;
+    }
+
+    public void setHogwartsStudent(boolean hogwartsStudent) {
+        this.hogwartsStudent = hogwartsStudent;
+    }
+
+    public String getActorName() {
+        return actorName;
+    }
+
+    public void setActorName(String actorName) {
+        this.actorName = actorName;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public String getEyeColour() {
+        return eyeColour;
+    }
+
+    public void setEyeColour(String eyeColour) {
+        this.eyeColour = eyeColour;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getHairColour() {
+        return hairColour;
+    }
+
+    public void setHairColour(String hairColour) {
+        this.hairColour = hairColour;
+    }
+
+    public boolean isWizard() {
+        return wizard;
+    }
+
+    public void setWizard(boolean wizard) {
+        this.wizard = wizard;
     }
 }
